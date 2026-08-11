@@ -1,0 +1,222 @@
+---
+import "../styles/global.css";
+
+interface Props {
+    title?: string;
+    description?: string;
+    subtitle?: string;
+    showBack?: boolean;
+    mainClass?: string;
+    image?: string;
+}
+
+const {
+    title = "Filip Tepper",
+    description = "Personal website of Filip Tepper",
+    subtitle,
+    showBack = false,
+    mainClass = "max-w-xl mx-auto px-6 py-8 space-y-12 w-full flex-1",
+    image = "https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?q=80&w=1200&auto=format&fit=crop",
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://tepper.pl");
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <link rel="canonical" href={canonicalURL} />
+
+        <!-- Open Graph / Social Meta Tags -->
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={canonicalURL} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={image} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={image} />
+
+        <!-- Favicon -->
+        <link
+            rel="icon"
+            type="image/svg+xml"
+            href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230f172a'/><text x='50%' y='55%' dominant-baseline='central' text-anchor='middle' fill='white' font-family='monospace' font-weight='bold' font-size='42'>FT</text></svg>"
+        />
+
+        <!-- Fonts: Plus Jakarta Sans & JetBrains Mono -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <slot name="head" />
+    </head>
+    <body
+        class="bg-canvas text-slate-700 font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-sky-500 selection:text-white"
+        id="body-root"
+    >
+        <!-- Accessibility Skip Link -->
+        <a
+            href="#main-content"
+            class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:px-4 focus:py-2 focus:bg-slate-900 focus:text-white focus:rounded-lg focus:font-mono focus:text-xs shadow-lg"
+        >
+            Skip to main content
+        </a>
+
+        <!-- Header Bar -->
+        <header
+            class="sticky top-0 z-40 w-full bg-canvas/90 backdrop-blur-md border-b border-slate-200/60"
+        >
+            <div
+                class="max-w-xl mx-auto px-6 h-16 flex items-center justify-between text-xs"
+            >
+                <div class="flex items-center space-x-2.5">
+                    <a href="/" class="flex items-center space-x-2 group">
+                        <div
+                            class="w-6 h-6 rounded-md bg-slate-900 text-white font-mono font-bold flex items-center justify-center text-[10px] group-hover:bg-sky-600 transition-colors"
+                        >
+                            FT
+                        </div>
+                        <span
+                            class="font-bold text-slate-900 text-sm tracking-tight"
+                            >Filip Tepper</span
+                        >
+                    </a>
+                    {
+                        subtitle && (
+                            <>
+                                <span class="text-slate-300">/</span>
+                                <span class="text-slate-500 font-mono text-[11px]">
+                                    {subtitle}
+                                </span>
+                            </>
+                        )
+                    }
+                </div>
+
+                <nav class="flex items-center space-x-3 text-xs">
+                    {
+                        showBack ? (
+                            <a
+                                href="/"
+                                class="text-slate-400 hover:text-slate-900 transition-colors font-mono text-[11px]"
+                            >
+                                ← Back
+                            </a>
+                        ) : (
+                            <a
+                                href="https://teppah.com/"
+                                target="_blank"
+                                rel="noopener"
+                                title="teppah.com"
+                                class="font-mono text-[11px] text-slate-400 hover:text-slate-800 transition-all opacity-40 hover:opacity-100 flex items-center gap-1"
+                                aria-label="teppah.com website"
+                            >
+                                <span>teppah</span>
+                            </a>
+                        )
+                    }
+                </nav>
+            </div>
+        </header>
+
+        <!-- Main Content Layout -->
+        <main id="main-content" class={mainClass}>
+            <slot />
+        </main>
+
+        <!-- Footer -->
+        <footer class="py-8 text-xs text-slate-400 font-mono border-t border-slate-200/60 mt-12">
+            <div
+                class="max-w-xl mx-auto px-6 flex items-center justify-between"
+            >
+                <p>© <span id="current-year">2026</span> Filip Tepper</p>
+                <div class="flex items-center space-x-3">
+                    {
+                        showBack ? (
+                            <a
+                                href="/"
+                                class="hover:text-slate-700 transition-colors"
+                            >
+                                ← Back to Main
+                            </a>
+                        ) : (
+                            <a
+                                href="mailto:filip@tepper.pl"
+                                class="hover:text-slate-700 transition-colors"
+                            >
+                                Contact
+                            </a>
+                        )
+                    }
+                </div>
+            </div>
+        </footer>
+
+        <!-- Interactive Copy Toast Notification -->
+        <div
+            id="toast"
+            class="fixed bottom-6 right-6 z-50 transform translate-y-10 opacity-0 transition-all duration-300 pointer-events-none"
+        >
+            <div
+                class="bg-slate-900 text-white text-xs font-mono px-4 py-2.5 rounded-xl shadow-lg flex items-center gap-2"
+            >
+                <svg
+                    class="w-3.5 h-3.5 text-emerald-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    ><path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 13l4 4L19 7"></path></svg
+                >
+                <span>Email copied to clipboard!</span>
+            </div>
+        </div>
+
+        <!-- Shared Script -->
+        <script is:inline>
+            document.getElementById("current-year").textContent =
+                new Date().getFullYear();
+
+            function copyEmail(btnElement) {
+                const email = "filip@tepper.pl";
+                const tempInput = document.createElement("input");
+                tempInput.value = email;
+                document.body.appendChild(tempInput);
+                tempInput.select();
+                document.execCommand("copy");
+                document.body.removeChild(tempInput);
+
+                const toast = document.getElementById("toast");
+                if (toast) {
+                    toast.classList.remove("translate-y-10", "opacity-0");
+
+                    setTimeout(() => {
+                        toast.classList.add("translate-y-10", "opacity-0");
+                    }, 2000);
+                }
+
+                if (btnElement) {
+                    const btnText = btnElement.querySelector(".email-btn-text");
+                    if (btnText) {
+                        const orig = btnText.textContent;
+                        btnText.textContent = "Copied!";
+                        setTimeout(() => {
+                            btnText.textContent = orig;
+                        }, 1800);
+                    }
+                }
+            }
+        </script>
+    </body>
+</html>

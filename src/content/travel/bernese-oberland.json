@@ -1,0 +1,70 @@
+{
+  "title": "Across the Bernese Oberland",
+  "description": "Five geotagged moments across high Swiss passes.",
+  "subtitle": "Swiss Alps",
+  "date": "Aug 2026",
+  "badge": "SWITZERLAND · 74KM",
+  "center": [46.55, 7.85],
+  "zoom": 10,
+  "locations": [
+    {
+      "id": "photo-1",
+      "title": "Grindelwald",
+      "lat": 46.6242,
+      "lng": 8.0414,
+      "imageSrc": "https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?q=80&w=1600&auto=format&fit=crop",
+      "imageAlt": "Grindelwald Valley fog",
+      "caption": "First light breaking over the valley as morning fog lifts off the damp pine trees.",
+      "aspect": "landscape"
+    },
+    {
+      "id": "photo-2",
+      "title": "Kleine Scheidegg",
+      "lat": 46.5851,
+      "lng": 7.9610,
+      "imageSrc": "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=900&auto=format&fit=crop",
+      "imageAlt": "Steep trail climb",
+      "caption": "The steep ascent toward the pass leaves the quiet alpine meadows far behind.",
+      "aspect": "portrait"
+    },
+    {
+      "id": "photo-3",
+      "title": "Lauterbrunnen",
+      "lat": 46.5935,
+      "lng": 7.9071,
+      "imageSrc": "https://images.unsplash.com/photo-1527668752968-14dc70a27c95?q=80&w=800&auto=format&fit=crop",
+      "imageAlt": "Timber steps",
+      "caption": "Timber steps fixed into vertical rock faces.",
+      "aspect": "grid-2up-1"
+    },
+    {
+      "id": "photo-4",
+      "title": "Oeschinensee",
+      "lat": 46.4988,
+      "lng": 7.7281,
+      "imageSrc": "https://images.unsplash.com/photo-1502784444187-359ac186c5bb?q=80&w=800&auto=format&fit=crop",
+      "imageAlt": "Oeschinensee Lake",
+      "caption": "Turquoise water sitting silently below the cliff line.",
+      "aspect": "grid-2up-2"
+    },
+    {
+      "id": "place-hohtuerli",
+      "title": "Hohtürli Pass",
+      "lat": 46.5167,
+      "lng": 7.7833,
+      "isPlaceOnly": true,
+      "note": "Dense whiteout fog and the heavy crunch of gravel underfoot as the wind howled across the high pass.",
+      "badgeColor": "bg-amber-500"
+    },
+    {
+      "id": "photo-5",
+      "title": "Kandersteg",
+      "lat": 46.4715,
+      "lng": 7.6738,
+      "imageSrc": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1600&auto=format&fit=crop",
+      "imageAlt": "Kandersteg valley finish",
+      "caption": "Reaching the valley station in Kandersteg as evening shadows stretch across the grass.",
+      "aspect": "landscape"
+    }
+  ]
+}

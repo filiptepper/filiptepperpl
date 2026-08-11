@@ -1,288 +1,133 @@
 ---
-import "../styles/global.css";
+import Layout from "../layouts/Layout.astro";
+import TravelCard from "../components/TravelCard.astro";
 ---
 
-<!doctype html>
-<html lang="en" class="scroll-smooth">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Filip Tepper</title>
-        <meta name="description" content="Personal website of Filip Tepper" />
-
-        <!-- Fonts: Plus Jakarta Sans & JetBrains Mono -->
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
-            rel="stylesheet"
-        />
-    </head>
-    <body
-        class="bg-canvas text-slate-700 font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-sky-500 selection:text-white"
-        id="body-root"
-    >
-        <!-- Header Bar -->
-        <header class="w-full bg-canvas/80 backdrop-blur-sm">
-            <div
-                class="max-w-xl mx-auto px-6 h-20 flex items-center justify-between"
-            >
-                <a href="#" class="flex items-center space-x-2.5 group">
-                    <div
-                        class="w-7 h-7 rounded-lg bg-slate-900 text-white font-mono font-bold flex items-center justify-center text-[10px] group-hover:bg-sky-600 transition-colors"
-                    >
-                        FT
-                    </div>
-                    <span
-                        class="font-bold text-slate-900 text-sm tracking-tight"
-                        >Filip Tepper</span
-                    >
-                </a>
-
-                <nav class="flex items-center space-x-3 text-xs">
-                    <!-- Discrete low-profile link to teppah.com -->
-                    <a
-                        href="https://teppah.com/"
-                        target="_blank"
-                        rel="noopener"
-                        title="teppah.com"
-                        class="font-mono text-[11px] text-slate-400 hover:text-slate-800 transition-all opacity-40 hover:opacity-100 flex items-center gap-1"
-                        aria-label="teppah.com website"
-                    >
-                        <span>teppah</span>
-                    </a>
-                </nav>
-            </div>
-        </header>
-
-        <!-- Main Content Layout -->
-        <main class="max-w-xl mx-auto px-6 py-8 space-y-12 w-full">
-            <!-- Hero Intro Section (Light, Short < 10 words) -->
-            <section class="space-y-2">
-                <h1
-                    class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight"
-                >
-                    Hi, I'm Filip. 👋
-                </h1>
-                <!-- Intro blurb: Exactly 4 words -->
-                <p class="text-base text-slate-600 font-normal leading-relaxed">
-                    Site Reliability Engineering Manager at Netflix.
-                </p>
-            </section>
-
-            <!-- Links & Platforms Section (Streamlined & Dividerless) -->
-            <section id="links" class="space-y-3">
-                <h2
-                    class="text-[11px] font-mono text-slate-400 uppercase tracking-wider"
-                >
-                    Connect
-                </h2>
-
-                <div class="flex flex-col space-y-2 text-xs font-medium">
-                    <!-- YouTube -->
-                    <a
-                        href="https://youtube.com/@FilipTepperYT"
-                        target="_blank"
-                        rel="noopener"
-                        class="py-1.5 flex items-center justify-between group text-slate-600 hover:text-slate-900 transition-colors"
-                    >
-                        <span
-                            class="group-hover:translate-x-0.5 transition-transform"
-                            >YouTube</span
-                        >
-                        <span
-                            class="font-mono text-[11px] text-slate-400 group-hover:text-slate-600"
-                            >@FilipTepperYT</span
-                        >
-                    </a>
-
-                    <!-- GitHub -->
-                    <a
-                        href="https://github.com/filiptepper"
-                        target="_blank"
-                        rel="noopener"
-                        class="py-1.5 flex items-center justify-between group text-slate-600 hover:text-slate-900 transition-colors"
-                    >
-                        <span
-                            class="group-hover:translate-x-0.5 transition-transform"
-                            >GitHub</span
-                        >
-                        <span
-                            class="font-mono text-[11px] text-slate-400 group-hover:text-slate-600"
-                            >@filiptepper</span
-                        >
-                    </a>
-
-                    <!-- LinkedIn -->
-                    <a
-                        href="https://linkedin.com/in/filiptepper"
-                        target="_blank"
-                        rel="noopener"
-                        class="py-1.5 flex items-center justify-between group text-slate-600 hover:text-slate-900 transition-colors"
-                    >
-                        <span
-                            class="group-hover:translate-x-0.5 transition-transform"
-                            >LinkedIn</span
-                        >
-                        <span
-                            class="font-mono text-[11px] text-slate-400 group-hover:text-slate-600"
-                            >in/filiptepper</span
-                        >
-                    </a>
-
-                    <!-- Goodreads -->
-                    <a
-                        href="https://www.goodreads.com/user/show/4096051-filip-tepper"
-                        target="_blank"
-                        rel="noopener"
-                        class="py-1.5 flex items-center justify-between group text-slate-600 hover:text-slate-900 transition-colors"
-                    >
-                        <span
-                            class="group-hover:translate-x-0.5 transition-transform"
-                            >Goodreads</span
-                        >
-                        <span
-                            class="font-mono text-[11px] text-slate-400 group-hover:text-slate-600"
-                            >filip-tepper</span
-                        >
-                    </a>
-
-                    <!-- Email -->
-                    <button
-                        onclick="copyEmail(this)"
-                        class="py-1.5 flex items-center justify-between group text-slate-600 hover:text-slate-900 transition-colors text-left w-full"
-                    >
-                        <span
-                            class="group-hover:translate-x-0.5 transition-transform"
-                            >filip@tepper.pl</span
-                        >
-                        <span
-                            class="font-mono text-[11px] text-slate-400 group-hover:text-slate-600 email-btn-text"
-                            >copy</span
-                        >
-                    </button>
-                </div>
-            </section>
-
-            <!-- Travel Section (Airy & Clean) -->
-            <section id="travel" class="space-y-4 pt-4">
-                <div class="flex items-center justify-between">
-                    <h2
-                        class="text-[11px] font-mono text-slate-400 uppercase tracking-wider"
-                    >
-                        Travel Logs
-                    </h2>
-                </div>
-
-                <!-- Featured Travel Story Card -->
-                <a
-                    href="travel-log.html"
-                    class="group block p-4 bg-white rounded-2xl border border-slate-200/70 hover:border-slate-300 hover:shadow-xs transition-all space-y-3"
-                >
-                    <div
-                        class="aspect-[21/9] bg-slate-100 rounded-xl overflow-hidden relative"
-                    >
-                        <img
-                            src="https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?q=80&w=1200&auto=format&fit=crop"
-                            alt="Bernese Oberland Trek"
-                            class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-500"
-                        />
-                        <span
-                            class="absolute top-2.5 left-2.5 bg-slate-900/80 text-white font-mono text-[9px] px-2 py-0.5 rounded-md backdrop-blur-xs"
-                        >
-                            SWITZERLAND · 74KM
-                        </span>
-                    </div>
-                    <div class="flex items-baseline justify-between gap-2">
-                        <h3
-                            class="font-bold text-slate-900 text-sm group-hover:text-sky-600 transition-colors"
-                        >
-                            Across the Bernese Oberland
-                        </h3>
-                        <span class="text-[11px] font-mono text-slate-400"
-                            >Aug 2026</span
-                        >
-                    </div>
-                    <p class="text-xs text-slate-500 leading-relaxed">
-                        Five-day trek across high Swiss passes. Interactive
-                        route map with portrait phone captures and elevation
-                        profiles.
-                    </p>
-                </a>
-            </section>
-        </main>
-
-        <!-- Footer -->
-        <footer class="py-8 text-xs text-slate-400 font-mono">
-            <div
-                class="max-w-xl mx-auto px-6 flex items-center justify-between"
-            >
-                <p>© <span id="current-year">2026</span> Filip Tepper</p>
-                <div class="flex items-center space-x-3">
-                    <a
-                        href="mailto:filip@tepper.pl"
-                        class="hover:text-slate-700 transition-colors"
-                        >Contact</a
-                    >
-                </div>
-            </div>
-        </footer>
-
-        <!-- Interactive Copy Toast Notification -->
-        <div
-            id="toast"
-            class="fixed bottom-6 right-6 z-50 transform translate-y-10 opacity-0 transition-all duration-300 pointer-events-none"
+<Layout title="Filip Tepper" description="Personal website of Filip Tepper">
+    <!-- Hero Intro Section -->
+    <section class="space-y-2">
+        <h1
+            class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight"
         >
-            <div
-                class="bg-slate-900 text-white text-xs font-mono px-4 py-2.5 rounded-xl shadow-lg flex items-center gap-2"
+            Hi, I'm Filip. 👋
+        </h1>
+        <p class="text-base text-slate-600 font-normal leading-relaxed">
+            Site Reliability Engineering Manager at Netflix.
+        </p>
+    </section>
+
+    <!-- Links & Platforms Section -->
+    <section id="links" class="space-y-3">
+        <h2
+            class="text-[11px] font-mono text-slate-400 uppercase tracking-wider"
+        >
+            Connect
+        </h2>
+
+        <div class="flex flex-col space-y-2 text-xs font-medium">
+            <!-- YouTube -->
+            <a
+                href="https://youtube.com/@FilipTepperYT"
+                target="_blank"
+                rel="noopener"
+                class="py-1.5 flex items-center justify-between group text-slate-600 hover:text-slate-900 transition-colors"
             >
-                <svg
-                    class="w-3.5 h-3.5 text-emerald-400"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    ><path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M5 13l4 4L19 7"></path></svg
+                <span
+                    class="group-hover:translate-x-0.5 transition-transform"
+                    >YouTube</span
                 >
-                <span>Email copied to clipboard!</span>
-            </div>
+                <span
+                    class="font-mono text-[11px] text-slate-400 group-hover:text-slate-600"
+                    >@FilipTepperYT</span
+                >
+            </a>
+
+            <!-- GitHub -->
+            <a
+                href="https://github.com/filiptepper"
+                target="_blank"
+                rel="noopener"
+                class="py-1.5 flex items-center justify-between group text-slate-600 hover:text-slate-900 transition-colors"
+            >
+                <span
+                    class="group-hover:translate-x-0.5 transition-transform"
+                    >GitHub</span
+                >
+                <span
+                    class="font-mono text-[11px] text-slate-400 group-hover:text-slate-600"
+                    >@filiptepper</span
+                >
+            </a>
+
+            <!-- LinkedIn -->
+            <a
+                href="https://linkedin.com/in/filiptepper"
+                target="_blank"
+                rel="noopener"
+                class="py-1.5 flex items-center justify-between group text-slate-600 hover:text-slate-900 transition-colors"
+            >
+                <span
+                    class="group-hover:translate-x-0.5 transition-transform"
+                    >LinkedIn</span
+                >
+                <span
+                    class="font-mono text-[11px] text-slate-400 group-hover:text-slate-600"
+                    >in/filiptepper</span
+                >
+            </a>
+
+            <!-- Goodreads -->
+            <a
+                href="https://www.goodreads.com/user/show/4096051-filip-tepper"
+                target="_blank"
+                rel="noopener"
+                class="py-1.5 flex items-center justify-between group text-slate-600 hover:text-slate-900 transition-colors"
+            >
+                <span
+                    class="group-hover:translate-x-0.5 transition-transform"
+                    >Goodreads</span
+                >
+                <span
+                    class="font-mono text-[11px] text-slate-400 group-hover:text-slate-600"
+                    >filip-tepper</span
+                >
+            </a>
+
+            <!-- Email -->
+            <button
+                onclick="copyEmail(this)"
+                class="py-1.5 flex items-center justify-between group text-slate-600 hover:text-slate-900 transition-colors text-left w-full cursor-pointer"
+            >
+                <span
+                    class="group-hover:translate-x-0.5 transition-transform"
+                    >filip@tepper.pl</span
+                >
+                <span
+                    class="font-mono text-[11px] text-slate-400 group-hover:text-slate-600 email-btn-text"
+                    >copy</span
+                >
+            </button>
+        </div>
+    </section>
+
+    <!-- Travel Section -->
+    <section id="travel" class="space-y-4 pt-4">
+        <div class="flex items-center justify-between">
+            <h2
+                class="text-[11px] font-mono text-slate-400 uppercase tracking-wider"
+            >
+                Travel Logs
+            </h2>
         </div>
 
-        <!-- JavaScript Logic -->
-        <script>
-            document.getElementById("current-year").textContent =
-                new Date().getFullYear();
-
-            function copyEmail(btnElement) {
-                const email = "filip@tepper.pl";
-                const tempInput = document.createElement("input");
-                tempInput.value = email;
-                document.body.appendChild(tempInput);
-                tempInput.select();
-                document.execCommand("copy");
-                document.body.removeChild(tempInput);
-
-                const toast = document.getElementById("toast");
-                toast.classList.remove("translate-y-10", "opacity-0");
-
-                setTimeout(() => {
-                    toast.classList.add("translate-y-10", "opacity-0");
-                }, 2000);
-
-                if (btnElement) {
-                    const btnText = btnElement.querySelector(".email-btn-text");
-                    if (btnText) {
-                        const orig = btnText.textContent;
-                        btnText.textContent = "Copied!";
-                        setTimeout(() => {
-                            btnText.textContent = orig;
-                        }, 1800);
-                    }
-                }
-            }
-        </script>
-    </body>
-</html>
+        <TravelCard
+            title="Across the Bernese Oberland"
+            description="Five-day trek across high Swiss passes. Interactive route map with portrait phone captures and elevation profiles."
+            href="/travel/bernese-oberland"
+            imageSrc="https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?q=80&w=1200&auto=format&fit=crop"
+            imageAlt="Bernese Oberland Trek"
+            date="Aug 2026"
+            badge="Switzerland · 74km"
+        />
+    </section>
+</Layout>

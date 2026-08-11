@@ -1,0 +1,263 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+    const entries = await getCollection("travel");
+    return entries.map((entry) => {
+        const slug = entry.id.replace(/\.json$/, "");
+        return {
+            params: { slug },
+            props: { entry },
+        };
+    });
+}
+
+const { entry } = Astro.props;
+const data = entry.data;
+const locations = data.locations;
+
+// Separate items for layout rendering
+const landscapeAndPortraits = locations.filter(l => l.aspect !== 'grid-2up-1' && l.aspect !== 'grid-2up-2');
+const grid1 = locations.find(l => l.aspect === 'grid-2up-1');
+const grid2 = locations.find(l => l.aspect === 'grid-2up-2');
+---
+
+<Layout
+    title={`${data.title} — Photo Story`}
+    description={data.description}
+    subtitle={data.subtitle}
+    showBack={true}
+>
+    <Fragment slot="head">
+        <link
+            rel="stylesheet"
+            href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+            integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+            crossorigin=""
+        />
+    </Fragment>
+
+    <article class="space-y-12">
+        <!-- Story Title & Intro -->
+        <header class="space-y-2">
+            <h1
+                class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight"
+            >
+                {data.title}
+            </h1>
+            <p class="text-sm text-slate-500 font-normal leading-relaxed">
+                {data.description}
+            </p>
+        </header>
+
+        <!-- MAP SECTION -->
+        <section class="space-y-2">
+            <div
+                class="bg-white p-2 sm:p-3 rounded-2xl border border-slate-200/80 shadow-xs"
+            >
+                <div
+                    id="inline-map"
+                    class="w-full h-64 sm:h-72 rounded-xl border border-slate-200/80 overflow-hidden z-0"
+                >
+                </div>
+            </div>
+            <p class="text-[11px] font-mono text-slate-400 text-center">
+                Interactive Map · Click any marker to view the photo location
+            </p>
+        </section>
+
+        <!-- Dynamic Content Items -->
+        <div class="space-y-14 pt-4">
+            {locations.map((loc, idx) => {
+                if (loc.isPlaceOnly) {
+                    return (
+                        <section
+                            class="p-4 bg-white rounded-2xl border border-slate-200/80 space-y-2 shadow-xs"
+                            id={loc.id}
+                            data-lat={loc.lat}
+                            data-lng={loc.lng}
+                        >
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-1.5">
+                                    <span class={`w-2 h-2 rounded-full ${loc.badgeColor || 'bg-amber-500'}`} />
+                                    <span class="text-xs font-mono font-bold text-slate-900 uppercase tracking-wider">
+                                        {loc.title}
+                                    </span>
+                                </div>
+                                <button
+                                    onclick={`focusPhotoMap(${loc.lat}, ${loc.lng})`}
+                                    class="text-[11px] font-mono text-slate-400 hover:text-sky-600 transition-colors shrink-0 cursor-pointer"
+                                >
+                                    Map ↗
+                                </button>
+                            </div>
+                            <p class="text-sm text-slate-700 leading-relaxed">
+                                {loc.note}
+                            </p>
+                        </section>
+                    );
+                }
+
+                if (loc.aspect === 'grid-2up-1') {
+                    const pair = locations.find(l => l.aspect === 'grid-2up-2');
+                    return (
+                        <div class="grid grid-cols-2 gap-3">
+                            <figure class="space-y-2 group" id={loc.id} data-lat={loc.lat} data-lng={loc.lng}>
+                                <div
+                                    class="bg-slate-100 rounded-xl overflow-hidden border border-slate-200/80 aspect-[9/16] relative shadow-xs cursor-pointer"
+                                    onclick={`focusPhotoMap(${loc.lat}, ${loc.lng})`}
+                                >
+                                    <img
+                                        src={loc.imageSrc}
+                                        alt={loc.imageAlt || loc.title}
+                                        class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-300"
+                                    />
+                                    <div class="absolute bottom-2 left-2 bg-slate-900/80 backdrop-blur-md text-white px-2 py-0.5 rounded text-[9px] font-mono">
+                                        {loc.title}
+                                    </div>
+                                </div>
+                                <figcaption class="text-xs text-slate-600 leading-snug">
+                                    {loc.caption}
+                                </figcaption>
+                            </figure>
+
+                            {pair && (
+                                <figure class="space-y-2 group" id={pair.id} data-lat={pair.lat} data-lng={pair.lng}>
+                                    <div
+                                        class="bg-slate-100 rounded-xl overflow-hidden border border-slate-200/80 aspect-[9/16] relative shadow-xs cursor-pointer"
+                                        onclick={`focusPhotoMap(${pair.lat}, ${pair.lng})`}
+                                    >
+                                        <img
+                                            src={pair.imageSrc}
+                                            alt={pair.imageAlt || pair.title}
+                                            class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-300"
+                                        />
+                                        <div class="absolute bottom-2 left-2 bg-slate-900/80 backdrop-blur-md text-white px-2 py-0.5 rounded text-[9px] font-mono">
+                                            {pair.title}
+                                        </div>
+                                    </div>
+                                    <figcaption class="text-xs text-slate-600 leading-snug">
+                                        {pair.caption}
+                                    </figcaption>
+                                </figure>
+                            )}
+                        </div>
+                    );
+                }
+
+                if (loc.aspect === 'grid-2up-2') {
+                    // Handled together with grid-2up-1
+                    return null;
+                }
+
+                return (
+                    <figure
+                        class="space-y-2.5 group"
+                        id={loc.id}
+                        data-lat={loc.lat}
+                        data-lng={loc.lng}
+                    >
+                        <div
+                            class={`bg-slate-100 rounded-2xl overflow-hidden border border-slate-200/80 relative shadow-xs cursor-pointer ${
+                                loc.aspect === 'portrait'
+                                    ? 'aspect-[9/16] max-w-xs sm:max-w-sm mx-auto'
+                                    : 'aspect-[16/10]'
+                            }`}
+                            onclick={`focusPhotoMap(${loc.lat}, ${loc.lng})`}
+                        >
+                            <img
+                                src={loc.imageSrc}
+                                alt={loc.imageAlt || loc.title}
+                                class="w-full h-full object-cover group-hover:scale-101 transition-transform duration-500"
+                            />
+                            <div class="absolute bottom-3 left-3 bg-slate-900/80 backdrop-blur-md text-white px-2.5 py-1 rounded-lg text-[10px] font-mono flex items-center gap-1.5">
+                                <span class="w-1.5 h-1.5 rounded-full bg-sky-400" />
+                                <span>{loc.title}</span>
+                            </div>
+                        </div>
+
+                        <figcaption class={`flex items-start justify-between gap-4 ${loc.aspect === 'portrait' ? 'max-w-xs sm:max-w-sm mx-auto' : ''}`}>
+                            <p class="text-sm text-slate-700 leading-relaxed">
+                                {loc.caption}
+                            </p>
+                            <button
+                                onclick={`focusPhotoMap(${loc.lat}, ${loc.lng})`}
+                                class="text-[11px] font-mono text-slate-400 hover:text-sky-600 transition-colors shrink-0 pt-0.5 cursor-pointer"
+                            >
+                                Map ↗
+                            </button>
+                        </figcaption>
+                    </figure>
+                );
+            })}
+        </div>
+    </article>
+
+    <script
+        src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""></script>
+    <script is:inline define:vars={{ locationsData: data.locations, center: data.center, zoom: data.zoom }}>
+        let map;
+
+        window.onload = function () {
+            map = L.map("inline-map", {
+                scrollWheelZoom: false,
+            }).setView(center, zoom);
+
+            L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",
+                {
+                    attribution: "&copy; OpenStreetMap &copy; CARTO",
+                    maxZoom: 16,
+                },
+            ).addTo(map);
+
+            locationsData.forEach((loc) => {
+                const customIcon = L.divIcon({
+                    className: "custom-pin-wrapper",
+                    html: `<div class="photo-pin" id="pin-${loc.id}" title="${loc.title}"></div>`,
+                    iconSize: [14, 14],
+                    iconAnchor: [7, 7],
+                });
+
+                const marker = L.marker([loc.lat, loc.lng], {
+                    icon: customIcon,
+                }).addTo(map);
+
+                marker.bindTooltip(loc.title, {
+                    permanent: true,
+                    direction: "right",
+                    offset: [8, 0],
+                    className: "custom-map-label",
+                });
+
+                const scrollToElement = () => {
+                    const el = document.getElementById(loc.id);
+                    if (el)
+                        el.scrollIntoView({
+                            behavior: "smooth",
+                            block: "center",
+                        });
+                };
+
+                marker.on("click", scrollToElement);
+                marker.getTooltip().on("click", scrollToElement);
+            });
+        };
+
+        function focusPhotoMap(lat, lng) {
+            if (map) {
+                map.flyTo([lat, lng], 12, { duration: 1.2 });
+                const mapEl = document.getElementById("inline-map");
+                if (mapEl && window.innerWidth < 640) {
+                    mapEl.scrollIntoView({
+                        behavior: "smooth",
+                        block: "center",
+                    });
+                }
+            }
+        }
+    </script>
+</Layout>
