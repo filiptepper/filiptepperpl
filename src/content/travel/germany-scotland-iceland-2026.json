@@ -1,0 +1,131 @@
+{
+  "title": "North Sea to North Atlantic: Germany, Scotland & Iceland",
+  "description": "Summer 2026 journey across Hamburg, Shetland Islands, and Iceland's fjords.",
+  "subtitle": "Germany, Scotland & Iceland",
+  "date": "Jul–Aug 2026",
+  "badge": "GERMANY · SCOTLAND · ICELAND",
+  "center": [62.0, -10.0],
+  "zoom": 4,
+  "locations": [
+    {
+      "id": "photo-6833",
+      "title": "Hamburg (Eimsbüttel)",
+      "lat": 53.5961,
+      "lng": 9.9384,
+      "imageSrc": "/images/germany-scotland-iceland-2026/IMG_6833.jpg",
+      "imageAlt": "Hamburg Eimsbüttel",
+      "caption": "[ADD CAPTION: Photo taken in Eimsbüttel, Hamburg on July 26, 2026]",
+      "aspect": "portrait"
+    },
+    {
+      "id": "photo-6842",
+      "title": "Hamburg Parks",
+      "lat": 53.5959,
+      "lng": 9.9350,
+      "imageSrc": "/images/germany-scotland-iceland-2026/IMG_6842.jpg",
+      "imageAlt": "Hamburg Parks",
+      "caption": "[ADD CAPTION: Photo taken in Hamburg on July 26, 2026]",
+      "aspect": "portrait"
+    },
+    {
+      "id": "photo-6910",
+      "title": "Hamburg Waterfront (St. Pauli)",
+      "lat": 53.5557,
+      "lng": 9.9648,
+      "imageSrc": "/images/germany-scotland-iceland-2026/IMG_6910.jpg",
+      "imageAlt": "Hamburg Waterfront",
+      "caption": "[ADD CAPTION: Photo taken near St. Pauli waterfront on July 28, 2026]",
+      "aspect": "portrait"
+    },
+    {
+      "id": "photo-6970",
+      "title": "Shetland Islands (Sumburgh)",
+      "lat": 59.8564,
+      "lng": -1.2724,
+      "imageSrc": "/images/germany-scotland-iceland-2026/IMG_6970.jpg",
+      "imageAlt": "Shetland Islands",
+      "caption": "[ADD CAPTION: Photo taken at Sumburgh, Shetland Islands on July 30, 2026]",
+      "aspect": "portrait"
+    },
+    {
+      "id": "photo-6987",
+      "title": "Shetland Coast",
+      "lat": 59.8689,
+      "lng": -1.2892,
+      "imageSrc": "/images/germany-scotland-iceland-2026/IMG_6987.jpg",
+      "imageAlt": "Shetland Coast",
+      "caption": "[ADD CAPTION: Photo taken along the Shetland coastline on July 30, 2026]",
+      "aspect": "portrait"
+    },
+    {
+      "id": "photo-7066",
+      "title": "North Iceland (Mývatn Region)",
+      "lat": 65.5708,
+      "lng": -17.0314,
+      "imageSrc": "/images/germany-scotland-iceland-2026/IMG_7066.jpg",
+      "imageAlt": "Mývatn Region, Iceland",
+      "caption": "[ADD CAPTION: Photo taken near Lake Mývatn area on August 2, 2026]",
+      "aspect": "portrait"
+    },
+    {
+      "id": "photo-7086",
+      "title": "North Iceland Waterfalls (Dettifoss Area)",
+      "lat": 65.6407,
+      "lng": -16.8084,
+      "imageSrc": "/images/germany-scotland-iceland-2026/IMG_7086.jpg",
+      "imageAlt": "Dettifoss Region",
+      "caption": "[ADD CAPTION: Photo taken near Dettifoss canyon on August 2, 2026]",
+      "aspect": "grid-2up-1"
+    },
+    {
+      "id": "photo-7089",
+      "title": "Jökulsárgljúfur Canyon",
+      "lat": 65.6395,
+      "lng": -16.8094,
+      "imageSrc": "/images/germany-scotland-iceland-2026/IMG_7089.jpg",
+      "imageAlt": "Jökulsárgljúfur Canyon",
+      "caption": "[ADD CAPTION: Photo taken in Jökulsárgljúfur canyon on August 2, 2026]",
+      "aspect": "grid-2up-2"
+    },
+    {
+      "id": "photo-7114",
+      "title": "Westfjords (Ísafjörður Region)",
+      "lat": 66.1788,
+      "lng": -23.3322,
+      "imageSrc": "/images/germany-scotland-iceland-2026/IMG_7114.jpg",
+      "imageAlt": "Westfjords, Iceland",
+      "caption": "[ADD CAPTION: Photo taken in Westfjords on August 3, 2026]",
+      "aspect": "portrait"
+    },
+    {
+      "id": "photo-7141",
+      "title": "Dynjandi Waterfall Trail",
+      "lat": 65.7329,
+      "lng": -23.2010,
+      "imageSrc": "/images/germany-scotland-iceland-2026/IMG_7141.jpg",
+      "imageAlt": "Dynjandi Waterfall Trail",
+      "caption": "[ADD CAPTION: Photo taken near Dynjandi waterfall on August 3, 2026]",
+      "aspect": "portrait"
+    },
+    {
+      "id": "photo-7230",
+      "title": "South Iceland (Golden Circle)",
+      "lat": 64.0421,
+      "lng": -20.8838,
+      "imageSrc": "/images/germany-scotland-iceland-2026/IMG_7230.jpg",
+      "imageAlt": "South Iceland",
+      "caption": "[ADD CAPTION: Photo taken in South Iceland Golden Circle area on August 4, 2026]",
+      "aspect": "portrait"
+    },
+    {
+      "id": "photo-7242",
+      "title": "Reykjanes Peninsula Coast",
+      "lat": 63.8125,
+      "lng": -22.7145,
+      "imageSrc": "/images/germany-scotland-iceland-2026/IMG_7242.jpg",
+      "imageAlt": "Reykjanes Peninsula",
+      "caption": "[ADD CAPTION: Photo taken along Reykjanes Peninsula coast on August 5, 2026]",
+      "aspect": "portrait"
+    }
+  ]
+}

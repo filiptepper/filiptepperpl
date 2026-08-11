@@ -85,12 +85,14 @@ const grid2 = locations.find(l => l.aspect === 'grid-2up-2');
                                         {loc.title}
                                     </span>
                                 </div>
-                                <button
-                                    onclick={`focusPhotoMap(${loc.lat}, ${loc.lng})`}
-                                    class="text-[11px] font-mono text-slate-400 hover:text-sky-600 transition-colors shrink-0 cursor-pointer"
+                                <a
+                                    href={`https://www.google.com/maps?q=${loc.lat},${loc.lng}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="text-[11px] font-mono text-slate-400 hover:text-sky-600 transition-colors shrink-0 pt-0.5"
                                 >
                                     Map ↗
-                                </button>
+                                </a>
                             </div>
                             <p class="text-sm text-slate-700 leading-relaxed">
                                 {loc.note}
@@ -181,12 +183,14 @@ const grid2 = locations.find(l => l.aspect === 'grid-2up-2');
                             <p class="text-sm text-slate-700 leading-relaxed">
                                 {loc.caption}
                             </p>
-                            <button
-                                onclick={`focusPhotoMap(${loc.lat}, ${loc.lng})`}
-                                class="text-[11px] font-mono text-slate-400 hover:text-sky-600 transition-colors shrink-0 pt-0.5 cursor-pointer"
+                            <a
+                                href={`https://www.google.com/maps?q=${loc.lat},${loc.lng}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="text-[11px] font-mono text-slate-400 hover:text-sky-600 transition-colors shrink-0 pt-0.5"
                             >
                                 Map ↗
-                            </button>
+                            </a>
                         </figcaption>
                     </figure>
                 );
