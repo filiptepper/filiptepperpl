@@ -1,0 +1,46 @@
+---
+interface Props {
+    videoId: string;
+    title?: string;
+    caption?: string;
+    class?: string;
+}
+
+const { videoId, title = "YouTube video player", caption, class: className = "" } = Astro.props;
+
+function extractVideoId(input: string) {
+    if (!input) return "";
+    if (input.includes("v=")) {
+        return input.split("v=")[1]?.split("&")[0] || input;
+    }
+    if (input.includes("youtu.be/")) {
+        return input.split("youtu.be/")[1]?.split("?")[0] || input;
+    }
+    if (input.includes("embed/")) {
+        return input.split("embed/")[1]?.split("?")[0] || input;
+    }
+    return input;
+}
+
+const cleanId = extractVideoId(videoId);
+---
+
+<figure class="space-y-2.5 group">
+    <div class={`bg-slate-900 rounded-2xl overflow-hidden border border-slate-200/80 relative shadow-xs aspect-video ${className}`}>
+        <iframe
+            class="w-full h-full"
+            src={`https://www.youtube-nocookie.com/embed/${cleanId}`}
+            title={title}
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+            loading="lazy"
+        ></iframe>
+    </div>
+    {caption && (
+        <figcaption class="text-sm text-slate-700 leading-relaxed">
+            {caption}
+        </figcaption>
+    )}
+</figure>

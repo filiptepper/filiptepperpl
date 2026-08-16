@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
+import YouTubeEmbed from "../../components/YouTubeEmbed.astro";
 
 export async function getStaticPaths() {
     const entries = await getCollection("travel");
@@ -67,6 +68,17 @@ const grid2 = locations.find(l => l.aspect === 'grid-2up-2');
             </p>
         </section>
 
+        <!-- Featured Story Video (if defined at root) -->
+        {data.youtubeId && (
+            <section>
+                <YouTubeEmbed
+                    videoId={data.youtubeId}
+                    title={data.title}
+                    caption={data.youtubeCaption}
+                />
+            </section>
+        )}
+
         <!-- Dynamic Content Items -->
         <div class="space-y-14 pt-4">
             {locations.map((loc, idx) => {
@@ -98,6 +110,36 @@ const grid2 = locations.find(l => l.aspect === 'grid-2up-2');
                                 {loc.note}
                             </p>
                         </section>
+                    );
+                }
+
+                if (loc.youtubeId || loc.aspect === 'video') {
+                    return (
+                        <figure
+                            class="space-y-2.5 group"
+                            id={loc.id}
+                            data-lat={loc.lat}
+                            data-lng={loc.lng}
+                        >
+                            <YouTubeEmbed
+                                videoId={loc.youtubeId || ""}
+                                title={loc.title}
+                            />
+
+                            <figcaption class="flex items-start justify-between gap-4">
+                                <p class="text-sm text-slate-700 leading-relaxed">
+                                    {loc.caption}
+                                </p>
+                                <a
+                                    href={`https://www.google.com/maps?q=${loc.lat},${loc.lng}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="text-[11px] font-mono text-slate-400 hover:text-sky-600 transition-colors shrink-0 pt-0.5"
+                                >
+                                    Map ↗
+                                </a>
+                            </figcaption>
+                        </figure>
                     );
                 }
 

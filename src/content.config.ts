@@ -9,10 +9,11 @@ const locationSchema = z.object({
     imageSrc: z.string().optional(),
     imageAlt: z.string().optional(),
     caption: z.string().optional(),
-    aspect: z.enum(['landscape', 'portrait', 'grid-2up-1', 'grid-2up-2']).default('landscape'),
+    aspect: z.enum(['landscape', 'portrait', 'grid-2up-1', 'grid-2up-2', 'video']).default('landscape'),
     isPlaceOnly: z.boolean().default(false),
     note: z.string().optional(),
     badgeColor: z.string().optional(),
+    youtubeId: z.string().optional(),
 });
 
 const travel = defineCollection({
@@ -25,6 +26,8 @@ const travel = defineCollection({
         badge: z.string(),
         center: z.tuple([z.number(), z.number()]),
         zoom: z.number().default(10),
+        youtubeId: z.string().optional(),
+        youtubeCaption: z.string().optional(),
         locations: z.array(locationSchema),
     }),
 });

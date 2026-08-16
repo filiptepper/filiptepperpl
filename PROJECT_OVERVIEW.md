@@ -50,6 +50,7 @@
    * `portrait`: 9:16 portrait phone photo centered.
    * `grid-2up-1` / `grid-2up-2`: Pair of side-by-side vertical photos.
    * `isPlaceOnly: true`: Text-only pass note with map dot (no photo required).
+   * `aspect: "video"` (or `youtubeId: "<id_or_url>"`): Responsive embedded YouTube video at a map location or at the story root.
 3. **Add Home Link**: Add `<TravelCard>` in `src/pages/index.astro` with `href="/travel/<slug>"`.
 
 ## 5. Local Photo Processing Workflow
