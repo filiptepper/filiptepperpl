@@ -8,15 +8,23 @@ interface Props {
     showBack?: boolean;
     mainClass?: string;
     image?: string;
+    frontmatter?: {
+        title?: string;
+        description?: string;
+        subtitle?: string;
+        showBack?: boolean;
+        mainClass?: string;
+        image?: string;
+    };
 }
 
 const {
-    title = "Filip Tepper",
-    description = "Personal website of Filip Tepper",
-    subtitle,
-    showBack = false,
-    mainClass = "max-w-xl mx-auto px-6 py-8 space-y-12 w-full flex-1",
-    image = "https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?q=80&w=1200&auto=format&fit=crop",
+    title = Astro.props.frontmatter?.title ?? "Filip Tepper",
+    description = Astro.props.frontmatter?.description ?? "Personal website of Filip Tepper",
+    subtitle = Astro.props.frontmatter?.subtitle,
+    showBack = Astro.props.frontmatter?.showBack ?? false,
+    mainClass = Astro.props.frontmatter?.mainClass ?? "max-w-xl mx-auto px-6 py-8 space-y-12 w-full flex-1",
+    image = Astro.props.frontmatter?.image ?? "https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?q=80&w=1200&auto=format&fit=crop",
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://tepper.pl");
