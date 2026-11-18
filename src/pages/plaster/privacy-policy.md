@@ -1,5 +1,5 @@
 ---
-layout: ../layouts/Layout.astro
+layout: ../../layouts/Layout.astro
 title: "Plaster Privacy Policy / Polityka prywatności"
 description: "Plaster Privacy Policy / Polityka prywatności"
 mainClass: "max-w-xl mx-auto px-6 py-8 w-full flex-1 markdown-content"
@@ -7,9 +7,9 @@ mainClass: "max-w-xl mx-auto px-6 py-8 w-full flex-1 markdown-content"
 
 # Privacy Policy / Polityka prywatności
 
-*English below / Wersja polska poniżej*
+---
 
-## English — Privacy Policy for Plaster - Domowa Apteczka (Plaster - Home Pharmacy)
+## Privacy Policy for Plaster - Domowa Apteczka
 
 **Effective date:** November 18, 2026
 
@@ -34,7 +34,7 @@ Filip Tepper ("we", "our") respects your privacy. Plaster - Domowa Apteczka is d
 
 ---
 
-## Polski — Polityka prywatności aplikacji Plaster - Domowa Apteczka
+## Polityka prywatności aplikacji Plaster - Domowa Apteczka
 
 **Data obowiązywania:** 18 listopada, 2026
 
